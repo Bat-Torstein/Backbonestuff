@@ -10,8 +10,25 @@ Backbone.$ = $;
 
 var CompanyTableView = Backbone.View.extend({
     initialize: function() {
-        this.model.bind("reset", this.render, this);
         this.model.bind("sync", this.render, this);
+    },
+    events: {
+        "click #navigate-back": "onNavigateBack",
+        "click #navigate-forward" : "onNavigateForward"
+    },
+
+    onNavigateBack: function() {
+        if (this.model.state.currentPage > this.model.state.firstPage) {
+            this.model.state.currentPage--;
+            this.render();
+        }
+    },
+
+    onNavigateForward: function() {
+        if (this.model.state.currentPage < this.model.state.lastPage) {
+            this.model.state.currentPage++;
+            this.render();
+        }
     },
 
     render: function () {
@@ -23,9 +40,11 @@ var CompanyTableView = Backbone.View.extend({
             return this;
         }
 
+        var currentPage = this.model.getPage(this.model.state.currentPage);
+
         var tableBody = this.$el.find("tbody");
 
-        _.forEach(this.model.models, function (company) {
+        _.forEach(currentPage.models, function (company) {
             var tableItemView = new CompanyTableItemView({model: company});
             tableBody.append(tableItemView.render().el);
         });

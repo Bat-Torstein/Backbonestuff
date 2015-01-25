@@ -19,8 +19,7 @@ var CompanyDetailsView = Backbone.View.extend({
     },
 
     onBtnBackClicked: function () {
-        
-        
+        this.close();
     },
 
     close: function() {

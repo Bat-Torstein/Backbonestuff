@@ -22,6 +22,7 @@ var CompanyRouter = Backbone.Router.extend({
             this.companyCollection.fetch();
 
         } else {
+            //this.companyTableView.render();
             this.companyCollection.fetch();
         }
     },
