@@ -1,0 +1,9 @@
+/node_modules
+/obj
+/bin
+/RestApi/bin
+/RestApi/obj
+/*.suo
+/*.user
+/packages
+*.user
