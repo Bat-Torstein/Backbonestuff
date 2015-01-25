@@ -62,10 +62,13 @@
     <Content Include="js\app.js" />
     <Content Include="js\Collections\CompanyCollection.js" />
     <Content Include="js\Models\Company.js" />
+    <Content Include="js\Router\CompanyRouter.js" />
+    <Content Include="js\Views\CompanyDetailsView.js" />
     <Content Include="js\Views\CompanyTableItemView.js" />
     <Content Include="js\Views\CompanyTableView.js" />
     <None Include="styles\app.less" />
     <Content Include="templates\company.html" />
+    <Content Include="templates\companydetails.html" />
     <Content Include="templates\companytable.html" />
     <Content Include="templates\companytableitem.html" />
     <Content Include="Web.config" />

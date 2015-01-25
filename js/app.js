@@ -1,12 +1,9 @@
-var $                   = require("jquery-browserify"),
-    CompanyTableView    = require("./Views/CompanyTableView"),
-    CompanyCollection   = require("./Collections/CompanyCollection");
+var Backbone        = require("Backbone"),
+    CompanyRouter   = require("./Router/CompanyRouter");
+
     
 $(document).ready(function () {
-    var element = $("#content");
+    var app = new CompanyRouter();
 
-    var companyCollection = new CompanyCollection();
-    var companyTableView = new CompanyTableView({ el: element, model: companyCollection });
-
-    companyCollection.fetch();
+    Backbone.history.start();
 });

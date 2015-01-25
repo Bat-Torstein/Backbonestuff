@@ -48,7 +48,7 @@ namespace RestApi.Controllers
 
     public class CompanyController : ApiController
     {
-        private CompanyList companyList = new CompanyList();
+        private static CompanyList companyList = new CompanyList();
 
         [HttpGet]
         public IEnumerable<Company> GetCompanies()
@@ -63,7 +63,7 @@ namespace RestApi.Controllers
             var company = companyList.Companies.Where(c => c.id == id);
             if (company.Count() > 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, company);
+                return Request.CreateResponse(HttpStatusCode.OK, company.First());
             }
             else
             {
@@ -99,7 +99,7 @@ namespace RestApi.Controllers
             var existing = existingEmployee.First();
             existing.clone(employee);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, existing);
         }
 
         [HttpDelete]
@@ -131,21 +131,22 @@ namespace RestApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // PUT Company/5
+        
+        [HttpPut]
         public HttpResponseMessage PutCompany(int id, Company company)
         {
             var existingCompany = companyList.Companies.Where(c => c.id == id);
             if (existingCompany != null)
             {
                 existingCompany.First().clone(company);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, existingCompany.First());
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // POST Company
-        public HttpResponseMessage PostCompany(int id, Company company)
+        [HttpPost]
+        public HttpResponseMessage PostCompany(Company company)
         {
             companyList.Companies.Add(company);
             
