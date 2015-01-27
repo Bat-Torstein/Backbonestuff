@@ -22,25 +22,17 @@ var CompanyRouter = Backbone.Router.extend({
             this.companyCollection.fetch();
 
         } else {
-            //this.companyTableView.render();
             this.companyCollection.fetch();
         }
     },
 
     companyDetails: function (id) {
-        var company = new Company({ id: id });
+        if (this.companyCollection) {
+            var company = this.companyCollection.get(id);
 
-        var companyDetailsView = new CompanyDetailsView({ el: $("#content"), model: company });
-        company.fetch();
-
-        /*
-        company.fetch({
-            success: function (data) {
-                var companyDetailsView = new CompanyDetailsView({ el: $("#content"), model: data });
-                companyDetailsView.render();
-            }
-        });
-        */
+            var companyDetailsView = new CompanyDetailsView({ el: $("#content"), model: company });
+            companyDetailsView.render();
+        }
     },
 
     companyEmployees: function () {

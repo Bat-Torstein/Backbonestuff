@@ -1,14 +1,16 @@
-﻿var Company     = require("../Models/Company"),
-    Backbone    = require("Backbone"),
-    $           = require("jquery-browserify"),
-    _           = require("underscore"),
-    template    = require("../../templates/companydetails.html");
+﻿var Company             = require("../Models/Company"),
+    Backbone            = require("Backbone"),
+    EmployeeCollection  = require("../Collections/EmployeeCollection"),
+    $                   = require("jquery-browserify"),
+    _                   = require("underscore"),
+    template            = require("../../templates/companydetails.html");
 
 Backbone.$ = $;
 
 var CompanyDetailsView = Backbone.View.extend({
     initialize: function () {
         this.listenTo(this.model, 'sync', this.render);
+        this.listenTo(this.model, 'read', this.render);
         this.listenTo(this.model, 'change', this.render);
     },
 
@@ -34,7 +36,7 @@ var CompanyDetailsView = Backbone.View.extend({
                 self.close();
             }, 
             error: function (model, response) {
-                console.log("error:  " + response);
+                console.log("error: " + response);
             }
         })
     },
@@ -47,6 +49,11 @@ var CompanyDetailsView = Backbone.View.extend({
     render: function () {
         var html = template(this.model.attributes);
         this.$el.html(html);
+
+        //var employeeCollection = new EmployeeCollection();
+        //var employeeTableView = new EmployeeTableView({ el: this.$el.find('#employees'), model: employeeCollection });
+
+        //this.$el.append(employeeTableView);
 
         return this;
     }
