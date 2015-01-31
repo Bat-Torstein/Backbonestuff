@@ -11,8 +11,7 @@ Backbone.$ = $;
 var CompanyRouter = Backbone.Router.extend({
     routes: {
         "": "home",
-        "company/:id": "companyDetails",
-        "company/:id/employees" : "companyEmployees"
+        "company/:id": "companyDetails"
     },
 
     home: function () {
@@ -30,13 +29,11 @@ var CompanyRouter = Backbone.Router.extend({
         if (this.companyCollection) {
             var company = this.companyCollection.get(id);
 
+
+
             var companyDetailsView = new CompanyDetailsView({ el: $("#content"), model: company });
             companyDetailsView.render();
         }
-    },
-
-    companyEmployees: function () {
-
     }
 });
 

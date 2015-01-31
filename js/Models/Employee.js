@@ -1,12 +1,10 @@
-﻿var Backbone            = require("backbone"),
-    Relational          = require("backbone-relational");
+﻿var Backbone = require("backbone");
 
 
-var Employee = Backbone.RelationalModel.extend({
-    urlRoot: '/employees/',
+var Employee = Backbone.Model.extend({
     defaults: {
-        'name': 'MyCompany',
-        'address': 'MyAddress'
+        'name': "",
+        'address': ""
     }
 });
 

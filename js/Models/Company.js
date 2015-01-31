@@ -1,21 +1,12 @@
-﻿var Backbone            = require("backbone"),
-    Relational          = require("backbone-relational"),
-    Employee            = require("./Employee"),
-    EmployeeCollection = require("../Collections/EmployeeCollection");
+﻿var Backbone = require("backbone");
 
-
-var Company = Backbone.RelationalModel.extend({
+var Company = Backbone.Model.extend({
     urlRoot: 'api/company/',
-    relations: [{
-        type: Backbone.HasMany,
-        key: 'employees',
-        relatedModel: Employee,
-        collectionType: EmployeeCollection,
-        reverseRelation: {
-            key: 'employed_by',
-            includeInJSON: 'id'
-        }
-    }]
+    defaults: {
+        'name': 'MyCompany',
+        'address': 'MyAddress',
+        'phone' : 'Phone'
+    }
 });
 
 module.exports = Company;
