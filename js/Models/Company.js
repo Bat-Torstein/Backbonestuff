@@ -1,7 +1,8 @@
 ﻿var Backbone = require("backbone");
 
 var Company = Backbone.Model.extend({
-    urlRoot: 'api/company/',
+    url: 'api/company/',
+
     defaults: {
         'name': 'MyCompany',
         'address': 'MyAddress',

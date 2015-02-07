@@ -1,4 +1,5 @@
-﻿var Company                     = require("../Models/Company"),
+﻿var BaseView                    = require("./BaseView"),
+    Company                     = require("../Models/Company"),
     Backbone                    = require("Backbone"),
     $                           = require("jquery-browserify"),
     _                           = require("underscore"),
@@ -8,13 +9,12 @@
 
 Backbone.$ = $;
 
-var EmployeeTableView = Backbone.View.extend({
+var EmployeeTableView = BaseView.extend({
     initialize: function () {
-        this.model.bind("sync", this.render, this);
+        this.itemViews = [];
     },
 
     render: function () {
-
         var html = tableTemplate({});
         this.$el.html(html);
 
@@ -24,12 +24,25 @@ var EmployeeTableView = Backbone.View.extend({
 
         var tableBody = this.$el.find("tbody");
 
+        var self = this;
+
         this.model.forEach(function (employee) {
             var tableItemView = new EmployeeTableItemView({ model: employee });
             tableBody.append(tableItemView.render().el);
+            self.itemViews.push(tableItemView);
         });
 
         return this;
+    },
+
+    onClose: function () {
+        if (this.itemViews.length) {
+            _.forEach(this.itemViews, function (itemView) {
+                itemView.close();
+            });
+        }
+
+        this.itemViews = [];
     }
 });
 

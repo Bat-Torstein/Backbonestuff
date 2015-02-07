@@ -1,17 +1,18 @@
-﻿var Company             = require("../Models/Company"),
+﻿var BaseView            = require("./BaseView"),
+    Company             = require("../Models/Company"),
     Backbone            = require("Backbone"),
     EmployeeCollection  = require("../Collections/EmployeeCollection"),
+    EmployeeTableView   = require("./EmployeeTableView.js"),
     $                   = require("jquery-browserify"),
     _                   = require("underscore"),
     template            = require("../../templates/companydetails.html");
 
 Backbone.$ = $;
 
-var CompanyDetailsView = Backbone.View.extend({
+var CompanyDetailsView = BaseView.extend({
     initialize: function () {
-        this.listenTo(this.model, 'sync', this.render);
-        this.listenTo(this.model, 'read', this.render);
-        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model.company, 'read change', this.render);
+        this.listenTo(this.model.employeeCollection, 'sync', this.render);
     },
 
     events: {
@@ -21,19 +22,18 @@ var CompanyDetailsView = Backbone.View.extend({
     },
 
     onBtnBackClicked: function () {
-        this.close();
+        this.navigateHome();
     },
 
-    close: function() {
-        this.undelegateEvents();
-        window.history.back();
+    navigateHome: function() {
+        Backbone.history.navigate("", { trigger: true });
     },
 
     onBtnSaveClicked: function () {
         var self = this;
-        this.model.save(null, {
+        this.model.company.save(null, {
             success: function (model, response) {
-                self.close();
+                self.navigateHome();
             }, 
             error: function (model, response) {
                 console.log("error: " + response);
@@ -42,20 +42,24 @@ var CompanyDetailsView = Backbone.View.extend({
     },
 
     onSomethingChanged: function() {
-        this.model.set("name", $("#company-name").val());
-        this.model.set("address", $("#company-address").val());
+        this.model.company.set("name", $("#company-name").val());
+        this.model.company.set("address", $("#company-address").val());
     },
 
     render: function () {
-        var html = template(this.model.attributes);
+        var html = template(this.model.company.attributes);
         this.$el.html(html);
 
-        //var employeeCollection = new EmployeeCollection();
-        //var employeeTableView = new EmployeeTableView({ el: this.$el.find('#employees'), model: employeeCollection });
-
-        //this.$el.append(employeeTableView);
+        this.employeeTableView = new EmployeeTableView({ el: this.$el.find('#employees'), model: this.model.employeeCollection });
+        this.employeeTableView.render();
 
         return this;
+    },
+   
+    onClose: function () {
+        if (this.employeeTableView) {
+            this.employeeTableView.close();
+        }
     }
 });
 

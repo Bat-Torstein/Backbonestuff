@@ -1,4 +1,5 @@
-﻿var Company                 = require("../Models/Company"), 
+﻿var BaseView                = require("./BaseView"),
+    Company                 = require("../Models/Company"),
     Backbone                = require("Backbone"),
     $                       = require("jquery-browserify"),
     _                       = require("underscore"),
@@ -8,9 +9,10 @@
 
 Backbone.$ = $;
 
-var CompanyTableView = Backbone.View.extend({
+var CompanyTableView = BaseView.extend({
     initialize: function() {
         this.model.bind("sync", this.render, this);
+        this.itemViews = [];
     },
     events: {
         "click #navigate-back": "onNavigateBack",
@@ -44,13 +46,25 @@ var CompanyTableView = Backbone.View.extend({
 
         var tableBody = this.$el.find("tbody");
 
+        var self = this;
         _.forEach(currentPage.models, function (company) {
             var tableItemView = new CompanyTableItemView({model: company});
             tableBody.append(tableItemView.render().el);
+            self.itemViews.push(tableItemView);
         });
 
 
         return this;
+    },
+
+    onClose: function () {
+        if (this.itemViews.length) {
+            _.forEach(this.itemViews, function (itemView) {
+                itemView.close(true);
+            });
+        }
+
+        this.itemViews = [];
     }
 });
 

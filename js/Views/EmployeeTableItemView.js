@@ -1,11 +1,12 @@
-﻿var Employee            = require("../Models/Employee"),
+﻿var BaseView            = require("./BaseView"),
+    Employee            = require("../Models/Employee"),
     Backbone            = require("Backbone"),
     $                   = require("jquery-browserify"),
     _                   = require("underscore"),
     tableItemTemplate   = require("../../templates/employeetableitem.html");
 
 
-var EmployeeTableItemView = Backbone.View.extend({
+var EmployeeTableItemView = BaseView.extend({
     tagName: 'tr',
     render: function () {
         var html = tableItemTemplate(this.model.attributes);
