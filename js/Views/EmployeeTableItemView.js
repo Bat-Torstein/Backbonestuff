@@ -9,7 +9,7 @@
 
 var EmployeeTableItemView = BaseView.extend({
     tagName: 'tr',
-
+    
     events: {
         'click' : 'onClick'
     },
