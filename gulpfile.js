@@ -6,13 +6,14 @@
 
 var paths = {
     watch: ['./js/**/*.js', './templates/*.html', './styles/*.less'],
+    specwatch: ['./js/**/*.js'],
     browserify: ['./js/*.js'],
     styles: ['./styles/*.less'],
-    tests: ['./js/specs/*.js','./dist/js/*.js'],
     dist: {
         css: './dist/css/',
         js: './dist/js/',
-    }
+    },
+    specs: './js/specs/*.js'
 };
 
 function notifyBrowserifyError() {
@@ -46,18 +47,18 @@ gulp.task("build", function () {
 });
 
 gulp.task("test", function () {
-    gulp.src(paths.tests)
-    .pipe(karma({
-        configFile: 'karma.conf.js',
-        action: 'run'
-    }))
-    .on('error', function (err) {
-        throw err;
-    });
+    gulp.src(paths.specs)
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run',
+            singeRun: true,
+            autoWatch: false
+        }))
+        .on('error', notifyTestsFailed);
 });
 
 gulp.task("watch", function () {
-    gulp.src(paths.tests)
+    gulp.src(paths.specwatch)
         .pipe(karma({
             configFile: 'karma.conf.js',
             singleRun: false,

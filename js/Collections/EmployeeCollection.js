@@ -2,7 +2,7 @@ var Backbone                 = require("Backbone"),
     PageableCollection       = require("backbone.paginator"),
     Employee                 = require("../Models/Employee");
 
-var EmployeeCollection = Backbone.PageableCollection.extend({
+var EmployeeCollection = PageableCollection.extend({
     url : function() {
         return "api/company/" + this.companyId + "/employees";
     },

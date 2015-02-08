@@ -41,7 +41,6 @@ var CompanyTableView = BaseView.extend({
         if (!this.model.models.length) {
             return this;
         }
-
         var currentPage = this.model.getPage(this.model.state.currentPage);
 
         var tableBody = this.$el.find("tbody");

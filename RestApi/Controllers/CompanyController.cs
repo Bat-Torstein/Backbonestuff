@@ -21,13 +21,13 @@ namespace RestApi.Controllers
             Companies.Add(new Company {id = 1, name = "Company 1", address = "Address 1"});
             Companies.Add(new Company {id = 2, name = "Company 2", address = "Address 2" });
             Companies.Add(new Company {id = 3, name = "Company 3", address = "Address 3" });
-            Companies.Add(new Company {id = 4, name = "Company 4", address = "Address 4" });       
-            Companies.Add(new Company {id = 5, name = "Company 5", address = "Address 5"});
-            Companies.Add(new Company {id = 6, name = "Company 6", address = "Address 6" });
+            Companies.Add(new Company {id = 4, name = "ACompany 4", address = "Address 4" });       
+            Companies.Add(new Company {id = 5, name = "BCompany 5", address = "Address 5"});
+            Companies.Add(new Company {id = 6, name = "CCompany 6", address = "Address 6" });
             Companies.Add(new Company {id = 7, name = "Company 7", address = "Address 7" });
-            Companies.Add(new Company {id = 8, name = "Company 8", address = "Address 8" });
-            Companies.Add(new Company {id = 9, name = "Company 9", address = "Address 9" });
-            Companies.Add(new Company {id = 10, name = "Company 10", address = "Address 10" });
+            Companies.Add(new Company {id = 8, name = "DCompany 8", address = "Address 8" });
+            Companies.Add(new Company {id = 9, name = "ECompany 9", address = "Address 9" });
+            Companies.Add(new Company {id = 10, name = "FCompany 10", address = "Address 10" });
 
             Employees = new List<Employee>();
             Employees.Add(new Employee { id = 1, name = "Ansatt A", address = "Addresse A", company_id = 1 });

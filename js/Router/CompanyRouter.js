@@ -17,8 +17,10 @@ var CompanyRouter = Backbone.Router.extend({
 
     home: function () {
         this.closeCurrentView();
-
-        var companyCollection = this.getCompanyCollection();
+        var models = [];
+        models.push(new Company());
+        models.push(new Company());
+        var companyCollection = this.getCompanyCollection(models);
 
         var companyTableView = new CompanyTableView({ el: $("#content"), model: companyCollection });
         companyCollection.fetch();

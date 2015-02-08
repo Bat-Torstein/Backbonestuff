@@ -11,7 +11,7 @@ var CompanyTableItemView = BaseView.extend({
     render: function () {
         var html = tableItemTemplate(this.model.attributes);
         this.$el.html(html);
-
+        
         return this;
     }
 });

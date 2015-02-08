@@ -65,6 +65,7 @@
     <Content Include="js\Models\Company.js" />
     <Content Include="js\Models\Employee.js" />
     <Content Include="js\Router\CompanyRouter.js" />
+    <Content Include="js\Specs\CompanyTableViewSpec.js" />
     <Content Include="js\Views\BaseModalView.js" />
     <Content Include="js\Views\BaseView.js" />
     <Content Include="js\Views\CompanyDetailsView.js" />

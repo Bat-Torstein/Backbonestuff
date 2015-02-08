@@ -1,15 +1,15 @@
 module.exports = function(config) {
   config.set({
     files: [
-	  'dist/js/app.js',
-      'js/specs/**/*.js',
+	  'js/specs/*.js'
     ],
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
-    preprocessors: {
-      'js/spec/**/*.js': ['coverage', 'browserify']
-    },
 	reporters: ['progress','notify'],
+	
+	preprocessors: {
+		'js/**/*.js' : ['browserify']
+	},
 	
     browsers: ['PhantomJS'],
 	
@@ -18,6 +18,11 @@ module.exports = function(config) {
       reportSuccess: false,
     },
 	
-	singleRun: true
+	browserify: {
+      transform: [ 'node-underscorify']
+    },
+	
+	singleRun: true,
+	autoWatch: false
   });
 };
