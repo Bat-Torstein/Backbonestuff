@@ -4,6 +4,7 @@
     Company             = require("../Models//Company"),
     CompanyTableView    = require("../Views/CompanyTableView"),
     CompanyDetailsView  = require("../Views/CompanyDetailsView"),
+    BasePageableView    = require("../Views/BasePageableView"),
     $                   = require("jquery-browserify");
 
 Backbone.$ = $;
@@ -17,10 +18,7 @@ var CompanyRouter = Backbone.Router.extend({
 
     home: function () {
         this.closeCurrentView();
-        var models = [];
-        models.push(new Company());
-        models.push(new Company());
-        var companyCollection = this.getCompanyCollection(models);
+        var companyCollection = this.getCompanyCollection();
 
         var companyTableView = new CompanyTableView({ el: $("#content"), model: companyCollection });
         companyCollection.fetch();

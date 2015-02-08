@@ -21,7 +21,6 @@
     "gulp-notify": "^2.1.0",
     "node-underscorify": "0.0.14",
     "bootstrap": "^3.3.2",
-    "backbone.paginator": "^2.0.2",
     "karma": "^0.12.31",
     "gulp-karma": "0.0.4",
     "jasmine-core": "^2.2.0",

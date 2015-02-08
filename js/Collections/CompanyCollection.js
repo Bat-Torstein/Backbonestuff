@@ -1,15 +1,10 @@
 ﻿var Backbone            = require("Backbone"),
-    PageableCollection  = require("backbone.paginator"),
     Company             = require("../Models/Company");
 
-var CompanyCollection = PageableCollection.extend({
+var CompanyCollection = Backbone.Collection.extend({
     url: 'api/company',
     model: Company,
-    mode: "client",
-    comparator: "name",
-    state: {
-        pageSize: 3,
-    }
+    comparator: "name"
 });
 
 module.exports = CompanyCollection;

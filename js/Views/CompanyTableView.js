@@ -1,4 +1,4 @@
-﻿var BaseView                = require("./BaseView"),
+﻿var BasePageableView        = require("./BasePageableView"),
     Company                 = require("../Models/Company"),
     Backbone                = require("Backbone"),
     $                       = require("jquery-browserify"),
@@ -9,10 +9,11 @@
 
 Backbone.$ = $;
 
-var CompanyTableView = BaseView.extend({
+var CompanyTableView = BasePageableView.extend({
     initialize: function() {
         this.model.bind("sync", this.render, this);
         this.itemViews = [];
+        this.pageableCollection = this.model;
     },
     events: {
         "click #navigate-back": "onNavigateBack",
@@ -20,33 +21,32 @@ var CompanyTableView = BaseView.extend({
     },
 
     onNavigateBack: function() {
-        if (this.model.state.currentPage > this.model.state.firstPage) {
-            this.model.state.currentPage--;
+        if (this.currentPage > this.firstPage) {
+            this.currentPage--;
             this.render();
         }
     },
 
     onNavigateForward: function() {
-        if (this.model.state.currentPage < this.model.state.lastPage) {
-            this.model.state.currentPage++;
+        if (this.currentPage < this.lastPage) {
+            this.currentPage++;
             this.render();
         }
     },
 
     render: function () {
-
         var html = tableTemplate({});
         this.$el.html(html);
 
         if (!this.model.models.length) {
             return this;
         }
-        var currentPage = this.model.getPage(this.model.state.currentPage);
+        var modelsOnCurrentPage = this.getModelsOnCurrentPage();
 
         var tableBody = this.$el.find("tbody");
 
         var self = this;
-        _.forEach(currentPage.models, function (company) {
+        _.forEach(modelsOnCurrentPage, function (company) {
             var tableItemView = new CompanyTableItemView({model: company});
             tableBody.append(tableItemView.render().el);
             self.itemViews.push(tableItemView);

@@ -24,7 +24,7 @@ namespace RestApi.Controllers
             Companies.Add(new Company {id = 4, name = "ACompany 4", address = "Address 4" });       
             Companies.Add(new Company {id = 5, name = "BCompany 5", address = "Address 5"});
             Companies.Add(new Company {id = 6, name = "CCompany 6", address = "Address 6" });
-            Companies.Add(new Company {id = 7, name = "Company 7", address = "Address 7" });
+            Companies.Add(new Company {id = 7, name = "ACompany 7", address = "Address 7" });
             Companies.Add(new Company {id = 8, name = "DCompany 8", address = "Address 8" });
             Companies.Add(new Company {id = 9, name = "ECompany 9", address = "Address 9" });
             Companies.Add(new Company {id = 10, name = "FCompany 10", address = "Address 10" });

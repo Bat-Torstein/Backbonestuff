@@ -11,8 +11,16 @@ describe("CompanyTableView", function () {
         var companyCollection;
         var models = [];
 
+        function addCompanyToModels() {
+            var company = new Company();
+            company.set("id", models.length);
+            models.push(company);
+        }
+
         describe("When no companies exists", function () {
             beforeEach(function () {
+                models = [];
+
                 companyCollection = new CompanyCollection(models);
 
                 companyTableView = new CompanyTableView({
@@ -31,7 +39,7 @@ describe("CompanyTableView", function () {
 
         describe("When one company exists", function () {
             beforeEach(function () {
-                models.push(new Company());
+                addCompanyToModels();
                 companyCollection = new CompanyCollection(models);
 
                 companyTableView = new CompanyTableView({
@@ -50,8 +58,9 @@ describe("CompanyTableView", function () {
 
         describe("When two companies exists", function () {
             beforeEach(function () {
-                models.push(new Company());
-                models.push(new Company());
+                models = [];
+                addCompanyToModels();
+                addCompanyToModels();
                 companyCollection = new CompanyCollection(models);
                 companyTableView = new CompanyTableView({
                     model: companyCollection
@@ -61,8 +70,6 @@ describe("CompanyTableView", function () {
             });
             
             it("should display two companies", function () {
-                var modelsOnPage = companyCollection.getPage(companyCollection.state.currentPage)
-
                 var tbody = companyTableView.$el.find('tbody');
                 var numItems = tbody.find('tr').length;
                 expect(numItems).toBe(2);
