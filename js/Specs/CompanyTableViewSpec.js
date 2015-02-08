@@ -75,4 +75,35 @@ describe("CompanyTableView", function () {
                 expect(numItems).toBe(2);
             });
         });
+
+        describe("When multiple companies exists", function () {
+            beforeEach(function () {
+                models = [];
+                addCompanyToModels();
+                addCompanyToModels();
+                addCompanyToModels();
+                addCompanyToModels();
+
+                companyCollection = new CompanyCollection(models);
+                companyTableView = new CompanyTableView({
+                    model: companyCollection
+                });
+
+                companyTableView.render();
+            });
+
+            it("should change current page when forward is clicked", function () {
+                companyTableView.currentPage = 1;
+                companyTableView.$el.find("#navigate-forward").click();
+
+                expect(companyTableView.currentPage).toBe(2);
+            });
+
+            it("should change current page when backward is clicked", function () {
+                companyTableView.currentPage = 2;
+                companyTableView.$el.find("#navigate-back").click();
+
+                expect(companyTableView.currentPage).toBe(1);
+            });
+        });
 });

@@ -90,6 +90,6 @@ describe("BasePageableView", function () {
             expect(modelsOnCurrentPage.length).toBe(1);
         });
 
+        // ToDO: Tests for search
     });
-
 });
