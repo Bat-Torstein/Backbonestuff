@@ -34,11 +34,11 @@ var CompanyDetailsView = BaseView.extend({
         this.model.company.save(null, {
             success: function (model, response) {
                 self.navigateHome();
-            }, 
+            },
             error: function (model, response) {
                 console.log("error: " + response);
             }
-        })
+        });
     },
 
     onSomethingChanged: function() {
@@ -49,7 +49,7 @@ var CompanyDetailsView = BaseView.extend({
     render: function () {
         var html = template(this.model.company.attributes);
         this.$el.html(html);
-
+        
         this.employeeTableView = new EmployeeTableView({ el: this.$el.find('#employees'), model: this.model.employeeCollection });
         this.employeeTableView.render();
 

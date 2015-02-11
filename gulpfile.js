@@ -2,12 +2,16 @@
     browserify  = require("gulp-browserify"),
     notify      = require("gulp-notify"),
     less        = require("gulp-less"),
-    karma       = require("gulp-karma");
+    karma       = require("gulp-karma"),
+    jshint      = require("gulp-jshint");
+
+
 
 var paths = {
     watch: ['./js/**/*.js', './templates/*.html', './styles/*.less'],
     specwatch: ['./js/**/*.js'],
     browserify: ['./js/*.js'],
+    lint: ['./js/**/*.js'],
     styles: ['./styles/*.less'],
     dist: {
         css: './dist/css/',
@@ -28,7 +32,14 @@ function notifyLessError() {
 
 function notifyTestsFailed() {
     gulp.src("gulpfile.js").pipe(notify("Tests failed!"));
+    this.emit('end');
 }
+
+function notifyLintError() {
+    gulp.src("gulpfile.js").pipe(notify("Lint failed!"));
+    this.emit('end');
+}
+
 
 gulp.task("build", function () {
     gulp.src(paths.browserify)
@@ -42,6 +53,12 @@ gulp.task("build", function () {
         .pipe(less())
         .on('error', notifyLessError)
         .pipe(gulp.dest(paths.dist.css));
+
+    gulp.src(paths.lint)
+        .pipe(jshint())
+        .pipe(jshint.reporter("default"))
+        .pipe(jshint.reporter("fail")
+        .on('error', notifyLintError));
 
     console.log("Success!");
 });

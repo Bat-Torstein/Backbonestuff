@@ -32,7 +32,7 @@ describe("CompanyTableView", function () {
 
             it("should display empty table", function () {
                 var tbody = companyTableView.$el.find('tbody');
-                var numItems = tbody.find('tr').length
+                var numItems = tbody.find('tr').length;
                 expect(numItems).toBe(0);
             });
         });
@@ -51,7 +51,7 @@ describe("CompanyTableView", function () {
 
             it("should display one company", function () {
                 var tbody = companyTableView.$el.find('tbody');
-                var numItems = tbody.find('tr').length
+                var numItems = tbody.find('tr').length;
                 expect(numItems).toBe(1);
             });
         });

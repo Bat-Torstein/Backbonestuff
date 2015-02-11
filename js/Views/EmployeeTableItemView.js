@@ -15,7 +15,7 @@ var EmployeeTableItemView = BaseView.extend({
     },
 
     onClick: function() {
-        var employeeDetailsView = new EmployeeDetailsView({ model: this.model })
+        var employeeDetailsView = new EmployeeDetailsView({ model: this.model });
         employeeDetailsView.render();
         employeeDetailsView.show();
     },

@@ -66,6 +66,8 @@
     <Content Include="js\Models\Employee.js" />
     <Content Include="js\Router\CompanyRouter.js" />
     <Content Include="js\Specs\BasePageableViewSpec.js" />
+    <Content Include="js\Specs\CompanyDetailsViewSpec.js" />
+    <Content Include="js\Specs\CompanyTableItemViewSpec.js" />
     <Content Include="js\Specs\CompanyTableViewSpec.js" />
     <Content Include="js\Views\BaseModalView.js" />
     <Content Include="js\Views\BasePageableView.js" />
