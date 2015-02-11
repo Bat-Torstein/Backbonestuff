@@ -7,3 +7,5 @@
 /*.user
 /packages
 *.user
+/dist/js/app.js
+/dist/css/app.css
