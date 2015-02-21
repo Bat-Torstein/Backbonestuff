@@ -75,10 +75,19 @@
     <Content Include="js\Views\CompanyDetailsView.js" />
     <Content Include="js\Views\CompanyTableItemView.js" />
     <Content Include="js\Views\CompanyTableView.js" />
+    <Content Include="styles\app.css.map">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <None Include="styles\app.less" />
     <Content Include="js\Views\EmployeeTableItemView.js" />
     <Content Include="js\Views\EmployeeTableView.js" />
     <Content Include="js\Views\EmployeeDetailsView.js" />
+    <Content Include="styles\app.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
+    <Content Include="styles\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <Content Include="templates\company.html" />
     <Content Include="templates\companydetails.html" />
     <Content Include="templates\companytable.html" />

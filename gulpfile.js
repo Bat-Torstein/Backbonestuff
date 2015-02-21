@@ -74,6 +74,12 @@ gulp.task("test", function () {
         .on('error', notifyTestsFailed);
 });
 
+gulp.task("less", function () {
+    gulp.src(paths.styles)
+        .pipe(less())
+        .on('error', notifyLessError);
+});
+
 gulp.task("watch", function () {
     gulp.src(paths.specwatch)
         .pipe(karma({

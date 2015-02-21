@@ -3,8 +3,9 @@
     Backbone                = require("Backbone"),
     $                       = require("jquery-browserify"),
     _                       = require("underscore"),
-    tableTemplate           = require("../../templates/companytable.html");
-    CompanyTableItemView    = require("./CompanyTableItemView");
+    tableTemplate           = require("../../templates/companytable.html"),
+    CompanyTableItemView    = require("./CompanyTableItemView"),
+    Autocomplete            = require("jquery-autocomplete");
 
 
 Backbone.$ = $;
@@ -52,6 +53,7 @@ var CompanyTableView = BasePageableView.extend({
             self.itemViews.push(tableItemView);
         });
 
+        this.initAutoComplete();
 
         return this;
     },
@@ -64,7 +66,15 @@ var CompanyTableView = BasePageableView.extend({
         }
 
         this.itemViews = [];
+    },
+
+    initAutoComplete: function () {
+        $("#company-name").autocomplete({
+            limit: 3,
+            source:  [this.model.getCompanyNames()]
+        });
     }
+
 });
 
 module.exports = CompanyTableView;
