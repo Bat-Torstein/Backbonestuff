@@ -75,6 +75,8 @@
     <Content Include="js\Views\CompanyDetailsView.js" />
     <Content Include="js\Views\CompanyTableItemView.js" />
     <Content Include="js\Views\CompanyTableView.js" />
+    <Content Include="karma.conf.js" />
+    <Content Include="karma_coverage.conf.js" />
     <Content Include="styles\app.css.map">
       <DependentUpon>app.css</DependentUpon>
     </Content>

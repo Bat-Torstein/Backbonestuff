@@ -74,6 +74,17 @@ gulp.task("test", function () {
         .on('error', notifyTestsFailed);
 });
 
+gulp.task("coverage", function () {
+    gulp.src(paths.specs)
+        .pipe(karma({
+            configFile: 'karma_coverage.conf.js',
+            action: 'run',
+            singeRun: true,
+            autoWatch: false
+        }))
+        .on('error', notifyTestsFailed);
+});
+
 gulp.task("less", function () {
     gulp.src(paths.styles)
         .pipe(less())

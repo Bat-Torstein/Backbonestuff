@@ -9,3 +9,7 @@
 *.user
 /dist/js/app.js
 /dist/css/app.css
+/coverage/PhantomJS 1.9.8 (Windows 7)
+/styles/app.css
+/styles/app.css.map
+/styles/app.min.css
