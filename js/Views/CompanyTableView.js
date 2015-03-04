@@ -5,7 +5,10 @@
     _                       = require("underscore"),
     tableTemplate           = require("../../templates/companytable.html"),
     CompanyTableItemView    = require("./CompanyTableItemView"),
-    Autocomplete            = require("jquery-autocomplete");
+    Autocomplete            = require("jquery-autocomplete"),
+    moment                  = require("moment");
+    datepicker              = require("booty-datepicker");
+
 
 
 Backbone.$ = $;
@@ -18,7 +21,8 @@ var CompanyTableView = BasePageableView.extend({
     },
     events: {
         "click #navigate-back": "onNavigateBack",
-        "click #navigate-forward" : "onNavigateForward"
+        "click #navigate-forward" : "onNavigateForward",
+        "click #btn-dates" : "onBtnDatesClicked"
     },
 
     onNavigateBack: function() {
@@ -33,6 +37,13 @@ var CompanyTableView = BasePageableView.extend({
             this.currentPage++;
             this.render();
         }
+    },
+
+    onBtnDatesClicked: function () {
+        var rawDate = moment($("#from-date").val(), ['DD/MM/YYYY'], true).format('YYYY-MM-DD');
+        var fromDate = new Date(rawDate);
+        var text = fromDate.getFullYear() + "-" + (fromDate.getMonth() + 1) + "-" + fromDate.getDate();
+        alert(text);
     },
 
     render: function () {
@@ -54,6 +65,7 @@ var CompanyTableView = BasePageableView.extend({
         });
 
         this.initAutoComplete();
+        this.initDatepicker();
 
         return this;
     },
@@ -73,6 +85,25 @@ var CompanyTableView = BasePageableView.extend({
             limit: 3,
             source:  [this.model.getCompanyNames()]
         });
+    },
+
+    initDatepicker: function () {
+        var defaultOptions = {
+            RAW_FORMAT: 'YYYY-MM-DD',
+            INPUT_FORMATS: ['DD/MM/YYYY'],
+            DISPLAY_FORMAT: 'DD/MM/YYYY',
+            formatter: function (value) {
+                return moment(value, this.RAW_FORMAT, true).format(this.DISPLAY_FORMAT);
+            },
+            validate: function (value) {
+                return moment(value, this.INPUT_FORMATS, true).isValid();
+            },
+            parser: function (value) {
+                return moment(value, this.INPUT_FORMATS, true).format(this.RAW_FORMAT);
+            }
+        };
+
+        datepicker(defaultOptions);
     }
 
 });

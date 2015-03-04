@@ -7,8 +7,20 @@
     </thead>
     <tbody></tbody>
 </table>
-<button id="navigate-back"><</button><button id="navigate-forward">></button>
+<button id="navigate-back"><</button>
+<button id="navigate-forward">></button>
 <br /><br>
 <div>
     <input type="text" id="company-name" />
+    <div class="input-group">
+        <input id="from-date" type="text" class="form-control" placeholder="yyyy-mm-dd">
+        <span class="input-group-addon" data-toggle="booty-datepicker">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+        <input id="to-date" type="text" class="form-control" placeholder="yyyy-mm-dd">
+        <span class="input-group-addon" data-toggle="booty-datepicker">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <button id="btn-dates">Se datoer</button>
 </div>
