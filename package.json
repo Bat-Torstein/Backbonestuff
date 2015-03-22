@@ -34,7 +34,7 @@
     "jshint": "^2.5.11",
     "gulp-jshint": "^1.9.2",
     "karma-coverage": "0.2.6",
-    "istanbulify": "^0.1.0",
+    "istanbulify": "^0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

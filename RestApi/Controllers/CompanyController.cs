@@ -18,10 +18,10 @@ namespace RestApi.Controllers
         public CompanyList()
         {
             Companies = new List<Company>();
-            Companies.Add(new Company {id = 1, name = "Company 1", address = "Address 1"});
-            Companies.Add(new Company {id = 2, name = "Company 2", address = "Address 2" });
-            Companies.Add(new Company {id = 3, name = "Company 3", address = "Address 3" });
-            Companies.Add(new Company {id = 4, name = "ACompany 4", address = "Address 4" });       
+            Companies.Add(new Company {id = 1, name = "Fox and stuff Company 1", address = "Address 1"});
+            Companies.Add(new Company { id = 2, name = "Fox and stuff Company 2", address = "Address 2" });
+            Companies.Add(new Company {id = 3, name = "Yes and No Company 3", address = "Address 3" });
+            Companies.Add(new Company {id = 4, name = "Mordi eier ACompany 4", address = "Address 4" });       
             Companies.Add(new Company {id = 5, name = "BCompany 5", address = "Address 5"});
             Companies.Add(new Company {id = 6, name = "CCompany 6", address = "Address 6" });
             Companies.Add(new Company {id = 7, name = "ACompany 7", address = "Address 7" });
