@@ -75,6 +75,7 @@
     <Content Include="js\Views\CompanyDetailsView.js" />
     <Content Include="js\Views\CompanyTableItemView.js" />
     <Content Include="js\Views\CompanyTableView.js" />
+    <Content Include="js\Views\ConfirmDialog.js" />
     <Content Include="karma.conf.js" />
     <Content Include="karma_coverage.conf.js" />
     <Content Include="styles\app.css.map">
@@ -94,6 +95,7 @@
     <Content Include="templates\companydetails.html" />
     <Content Include="templates\companytable.html" />
     <Content Include="templates\companytableitem.html" />
+    <Content Include="templates\confirm.html" />
     <Content Include="templates\employeedetails.html" />
     <Content Include="templates\employeetable.html" />
     <Content Include="templates\employeetableitem.html" />
