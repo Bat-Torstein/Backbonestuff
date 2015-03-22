@@ -1,21 +1,35 @@
 ﻿var     _           = require('underscore'),
-        BaseView    = require('./BaseView');
+        BaseView    = require('./BaseView'),
+        $           = require('jquery-browserify'),
         Bootstrap   = require('bootstrap');
 
 var BaseModalView = BaseView.extend({
-    className: 'modal fade',
+    className: 'modal hide fade',
+
+    attributes: function () {
+        return {
+            role: 'dialog'
+        };
+    },
 
     events: {
         'hidden.bs.modal'   : 'teardown',
         'shown.bs.modal'    : 'shown'
     },
 
-    initialize: function () {
+    initialize: function (args) {
+        if (this.initializeView) {
+            this.initializeView(args);
+        }
         this.render();
     },
 
     show: function () {
         this.$el.modal('show');
+    },
+
+    hide : function() {
+        this.$el.modal('hide');
     },
 
     teardown: function () {

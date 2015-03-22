@@ -5,6 +5,7 @@
     _                       = require("underscore"),
     tableTemplate           = require("../../templates/companytable.html"),
     CompanyTableItemView    = require("./CompanyTableItemView"),
+    ConfirmDialog           = require("../Views/ConfirmDialog"),
     Autocomplete            = require("jquery-autocomplete"),
     moment                  = require("moment");
     datepicker              = require("booty-datepicker");
@@ -40,6 +41,23 @@ var CompanyTableView = BasePageableView.extend({
     },
 
     onBtnDatesClicked: function () {
+        var self = this;
+
+        if (!this.confirmDialog) {
+            this.confirmDialog = new ConfirmDialog({
+                el: '#confirm-dialog',
+                title: "Er du sikker?",
+                text: "Vil du virkelig se datoer?",
+                cb: function () {
+                    self.showDates();
+                }
+            });
+        }
+
+        this.confirmDialog.show();
+    },
+
+    showDates : function() {
         var rawDate = moment($("#from-date").val(), ['DD/MM/YYYY'], true).format('YYYY-MM-DD');
         var fromDate = new Date(rawDate);
         var text = fromDate.getFullYear() + "-" + (fromDate.getMonth() + 1) + "-" + fromDate.getDate();
@@ -75,6 +93,10 @@ var CompanyTableView = BasePageableView.extend({
             _.forEach(this.itemViews, function (itemView) {
                 itemView.close(true);
             });
+        }
+
+        if (this.confirmDialog) {
+            this.confirmDialog.close();
         }
 
         this.itemViews = [];
