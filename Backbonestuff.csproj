@@ -72,6 +72,7 @@
     <Content Include="js\Views\BaseModalView.js" />
     <Content Include="js\Views\BasePageableView.js" />
     <Content Include="js\Views\BaseView.js" />
+    <Content Include="js\Views\ChartView.js" />
     <Content Include="js\Views\CompanyDetailsView.js" />
     <Content Include="js\Views\CompanyTableItemView.js" />
     <Content Include="js\Views\CompanyTableView.js" />

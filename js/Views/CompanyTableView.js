@@ -6,6 +6,7 @@
     tableTemplate           = require("../../templates/companytable.html"),
     CompanyTableItemView    = require("./CompanyTableItemView"),
     ConfirmDialog           = require("../Views/ConfirmDialog"),
+    ChartView               = require('../Views/ChartView'),
     Autocomplete            = require("jquery-autocomplete"),
     moment                  = require("moment");
     datepicker              = require("booty-datepicker");
@@ -65,6 +66,8 @@ var CompanyTableView = BasePageableView.extend({
     },
 
     render: function () {
+        this.closeSubViews();
+
         var html = tableTemplate({});
         this.$el.html(html);
 
@@ -82,13 +85,20 @@ var CompanyTableView = BasePageableView.extend({
             self.itemViews.push(tableItemView);
         });
 
+        this.chartView = new ChartView({
+            el: '#chartview',
+            model: this.model
+        });
+
+        this.chartView.render();
+
         this.initAutoComplete();
         this.initDatepicker();
 
         return this;
     },
 
-    onClose: function () {
+    closeSubViews: function() {
         if (this.itemViews.length) {
             _.forEach(this.itemViews, function (itemView) {
                 itemView.close(true);
@@ -99,7 +109,15 @@ var CompanyTableView = BasePageableView.extend({
             this.confirmDialog.close();
         }
 
+        if (this.chartView) {
+            this.chartView.close();
+        }
+
         this.itemViews = [];
+    },
+
+    onClose: function () {
+        this.closeSubViews();
     },
 
     initAutoComplete: function () {
