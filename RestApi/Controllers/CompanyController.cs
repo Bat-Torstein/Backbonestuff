@@ -61,7 +61,6 @@ namespace RestApi.Controllers
         // GET Company/5
         public HttpResponseMessage GetCompany(int id)
         {
-            Thread.Sleep(2000);
             var company = companyList.Companies.Where(c => c.id == id);
             if (company.Count() > 0)
             {
