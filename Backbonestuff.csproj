@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +63,7 @@
     <Content Include="js\app.js" />
     <Content Include="js\Collections\CompanyCollection.js" />
     <Content Include="js\Collections\EmployeeCollection.js" />
+    <Content Include="js\Common\Translate.js" />
     <Content Include="js\Models\Company.js" />
     <Content Include="js\Models\Employee.js" />
     <Content Include="js\Router\CompanyRouter.js" />
@@ -103,6 +105,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="translations\english_en.json" />
+    <Content Include="translations\norwegian_no.json" />
+    <Content Include="translations\swedish_se.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,6 +141,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties translations_4norwegian_3no_1json__JSONSchema="http://json.schemastore.org/contribute" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

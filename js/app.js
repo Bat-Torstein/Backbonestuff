@@ -1,4 +1,4 @@
-var Backbone        = require("Backbone"),
+var Backbone = require("Backbone"),
     CompanyRouter   = require("./Router/CompanyRouter"),
     $               = require("jquery-browserify");
 

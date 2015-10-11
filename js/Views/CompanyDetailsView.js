@@ -6,6 +6,7 @@
     $                   = require("jquery-browserify"),
     _                   = require("underscore"),
     template            = require("../../templates/companydetails.html");
+    _t                  = require("../common/Translate");
 
 Backbone.$ = $;
 
